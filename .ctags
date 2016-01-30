@@ -1,0 +1,8 @@
+--languages=-html
+--languages=-javascript
+
+--python-kinds=-iv
+
+--exclude=.git
+--exclude=.hg
+--exclude=build
