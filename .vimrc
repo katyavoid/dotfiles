@@ -170,7 +170,7 @@ endif
 " GUI {{{
 
 if has("gui_running")
-  set guifont=Menlo:h12
+  set guifont=Inconsolata:h14
   set guioptions=acegimt
   set lines=25 columns=80
 endif
