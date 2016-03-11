@@ -6,6 +6,8 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
+colorscheme wombat256mod
+
 set autoread
 set autowrite
 set backspace=2
