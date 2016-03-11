@@ -5,6 +5,10 @@ readonly tmp_dir="$(mktemp -d)"
 
 tar_options="--exclude install.sh --exclude .gitignore --strip-components 1"
 
+if [ "$(uname -s)" = "Linux" ]; then
+    tar_options="--exclude Library $tar_options"
+fi
+
 if [ -x "$(command -v curl)" ]; then
     fetch_cmd="$(command -v curl) -L"
 else
