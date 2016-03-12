@@ -45,7 +45,7 @@ set smartcase
 set smarttab
 set spellfile=~/.vim/spell/dict.utf-8.add
 set spelllang=en,el
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%*%=%-14.(%l,%c%V%)\ %P
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{fugitive#statusline()}%#ErrorMsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P
 " Fix slow O inserts
 set timeout timeoutlen=1000 ttimeoutlen=100
 set title
