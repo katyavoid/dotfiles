@@ -16,6 +16,7 @@ export LANG=en_US.UTF-8
 
 export GPG_TTY=$(tty)
 
+[[ -x $(command -v vimpager) ]] &&  export PAGER=vimpager
 export LESS=-R
 export WORDCHARS=${WORDCHARS//[&.;\/]}
 
@@ -24,6 +25,8 @@ SAVEHIST=10000
 HISTFILE=~/.zhistory
 
 PROMPT='%m:%1~${vcs_info_msg_0_} %# '
+
+fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
 
 path=(
     ~/bin
@@ -88,6 +91,7 @@ zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:*' unstagedstr '-'
 
 if [[ $OSTYPE =~ darwin ]]; then
+    alias ls='ls -G'
     alias ldd='otool -L'
 fi
 
