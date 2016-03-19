@@ -18,5 +18,7 @@ https://github.com/tpope/vim-rails.git
 https://github.com/vim-ruby/vim-ruby.git
 https://github.com/ctrlpvim/ctrlp.vim.git
 https://github.com/scrooloose/syntastic.git
-https://github.com/plasticboy/vim-markdown.git
+https://github.com/vim-pandoc/vim-pandoc-syntax.git
+https://github.com/vim-pandoc/vim-pandoc.git
+https://github.com/chrisbra/csv.vim.git
 https://github.com/vim-scripts/wombat256.vim.git
