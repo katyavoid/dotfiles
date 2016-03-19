@@ -42,7 +42,12 @@ path=(
 
 path=(${(u)^path:A}(N-/))
 
-export EDITOR=vi
+if [[ -x $(command -v vim) ]]; then
+    export EDITOR=$(command -v vim)
+    alias view="$EDITOR -R"
+else
+    export EDITOR=vi
+fi
 export VISUAL=$EDITOR
 
 watch=(notme)
@@ -109,6 +114,10 @@ if [[ $OSTYPE =~ linux ]]; then
 
     [[ -x $(command -v lesspipe) ]] && eval $(lesspipe)
 fi
+
+[[ -x $(command -v rbenv) ]] && eval "$(rbenv init -)"
+[[ -x $(command -v pyenv) ]] && eval "$(pyenv init -)"
+
 
 alias cp='cp -i'
 alias enc='openssl aes-256-cbc -salt'
