@@ -190,4 +190,3 @@ flush_dns_cache() {
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-bindkey -e
