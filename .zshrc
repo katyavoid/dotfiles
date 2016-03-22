@@ -24,7 +24,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zhistory
 
-PROMPT='%F{10}%m%f:%F{11}%1~%f${vcs_info_msg_0_} %F{11}%#%f '
+PROMPT='%m:%1~${vcs_info_msg_0_} %# '
 
 fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
 
@@ -94,15 +94,17 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' actionformats '(%b|%a)'
 zstyle ':vcs_info:*' formats '(%b%c%u)'
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr '%F{9}+%f'
-zstyle ':vcs_info:*' unstagedstr '%F{9}-%f'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:*' unstagedstr '-'
 
 if [[ $OSTYPE =~ darwin ]]; then
-    alias ls='ls -G'
+    alias ls='ls -F'
     alias ldd='otool -L'
 fi
 
 if [[ $OSTYPE =~ linux ]]; then
+    alias ls='ls -F'
+
     if [[ -n $DISPLAY ]]; then
         export BROWSER=firefox
         export NO_AT_BRIDGE=1
@@ -128,7 +130,6 @@ alias ctmp='find $TMP -ctime +10 -delete'
 alias l='ls -chlt'
 alias dot='ls -d .*[[:alnum:]]'
 alias du1='du -h -d 1'
-alias grep='grep -n --color=auto'
 alias mv='mv -i'
 alias rm='rm -i'
 alias timestamp='date +%Y%m%d_%H%M%S'
