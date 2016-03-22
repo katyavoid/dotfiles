@@ -47,6 +47,7 @@ path=(${(u)^path:A}(N-/))
 
 if [[ -x $(command -v vim) ]]; then
     export EDITOR=$(command -v vim)
+    alias vi="$EDITOR"
     alias view="$EDITOR -R"
 else
     export EDITOR=vi
