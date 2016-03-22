@@ -177,9 +177,6 @@ let mapleader=','
 " Remove trailing white space http://vim.wikia.com/wiki/Remove_unwanted_spaces
 nnoremap <silent><leader>c :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-nnoremap <Space> za
-vnoremap <Space> za
-
 nnoremap <leader>l :setlocal list!<CR>
 nnoremap <leader>n :setlocal number!<CR>
 nnoremap <leader>s :setlocal spell!<CR>
