@@ -30,6 +30,7 @@ fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
 
 path=(
     ~/bin
+    ~/.local/bin
     ~/.rbenv/bin
     ~/.pyenv/bin
     /usr/local/bin
