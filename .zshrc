@@ -1,3 +1,5 @@
+# vim: et sts=4 sw=4
+
 setopt no_global_rcs
 setopt auto_cd
 setopt auto_list
@@ -191,6 +193,10 @@ flush_dns_cache() {
             printf "Unknown system\n"
             ;;
     esac
+}
+
+rfc() {
+    open "https://tools.ietf.org/html/rfc$1"
 }
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
