@@ -100,7 +100,8 @@ zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:*' unstagedstr '-'
 
 if [[ $OSTYPE =~ darwin ]]; then
-    alias ls='ls -F'
+    export LSCOLORS='Exfxcxdxbxegedabagacad'
+    alias ls='ls -G'
     alias ldd='otool -L'
 fi
 
