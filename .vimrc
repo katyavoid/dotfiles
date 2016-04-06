@@ -7,7 +7,7 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
-colorscheme vividchalk
+colorscheme molokai
 
 set autoread
 set autowrite
@@ -209,6 +209,7 @@ let g:NERDTreeDirArrows=0
 let g:NERDTreeHijackNetrw=1
 let g:NERDTreeWinSize=30
 let g:NERDTreeRespectWildIgnore=1
+let g:NERDTreeIgnore=['tmp$[[dir]]', 'log$[[dir]]']
 
 " }}}
 
