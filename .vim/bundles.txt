@@ -1,6 +1,7 @@
 # vim: nospell
 https://github.com/hdima/python-syntax.git
 https://github.com/hynek/vim-python-pep8-indent.git
+https://github.com/fatih/vim-go.git
 https://github.com/godlygeek/tabular.git
 https://github.com/vim-scripts/nagios-syntax.git
 https://github.com/mitsuhiko/vim-jinja.git
