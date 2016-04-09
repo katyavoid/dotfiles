@@ -26,7 +26,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zhistory
 
-PROMPT='%m:%1~${vcs_info_msg_0_} %# '
+PROMPT='%F{3}%m%f:%F{2}%1~%f${vcs_info_msg_0_} %# '
 
 fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
 
@@ -95,11 +95,11 @@ esac
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' actionformats '(%b|%a)'
-zstyle ':vcs_info:*' formats '(%b%c%u)'
+zstyle ':vcs_info:*' actionformats ' (%b|%a)'
+zstyle ':vcs_info:*' formats ' (%b%c%u)'
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:*' unstagedstr '-'
+zstyle ':vcs_info:*' stagedstr '%F{2}+%f'
+zstyle ':vcs_info:*' unstagedstr '%F{1}-%f'
 
 if [[ $OSTYPE =~ darwin ]]; then
     alias ls='ls -G'
