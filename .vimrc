@@ -44,7 +44,6 @@ set smartcase
 set smarttab
 set spellfile=~/.vim/spell/dict.utf-8.add
 set spelllang=en,el
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{fugitive#statusline()}%#ErrorMsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P
 " Fix slow O inserts
 set timeout timeoutlen=1000 ttimeoutlen=100
 set title
@@ -192,9 +191,6 @@ let g:is_bash=1
 let g:sh_noisk=1
 let python_highlight_all=1
 let ruby_space_errors=1
-
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_working_path_mode = ''
 
 let g:go_fmt_command="goimports"
 let g:go_highlight_functions=1
