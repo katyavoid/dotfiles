@@ -22,5 +22,3 @@ https://github.com/scrooloose/syntastic.git
 https://github.com/chrisbra/csv.vim.git
 https://github.com/plasticboy/vim-markdown.git
 https://github.com/itspriddle/vim-marked.git
-https://github.com/tpope/vim-vividchalk.git
-https://github.com/tomasr/molokai.git

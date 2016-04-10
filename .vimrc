@@ -7,8 +7,6 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
-colorscheme molokai
-
 set autoread
 set autowrite
 set backspace=2
