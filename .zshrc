@@ -18,7 +18,6 @@ export LANG=en_US.UTF-8
 
 export GPG_TTY=$(tty)
 
-[[ -x $(command -v vimpager) ]] && export PAGER=vimpager
 export LESS=-R
 export WORDCHARS=${WORDCHARS//[&.;\/]}
 
@@ -44,17 +43,8 @@ path=(
 
 path=(${(u)^path:A}(N-/))
 
-if [[ -x $(command -v vim) ]]; then
-    export EDITOR=$(command -v vim)
-    alias vi="$EDITOR"
-    alias view="$EDITOR -R"
-else
-    export EDITOR=vi
-fi
+export EDITOR=vi
 export VISUAL=$EDITOR
-
-[[ -x $(command -v rbenv) ]] && eval "$(rbenv init -)"
-[[ -x $(command -v pyenv) ]] && eval "$(pyenv init -)"
 
 watch=(notme)
 
@@ -75,8 +65,6 @@ compinit
 
 compdef '_files -g "*.(asciidoc|md|mkd|markdown)"' pandoc
 compdef '_files -g "*.yml"' ansible-playbook
-compdef '_files -g "*.in"' pip-compile
-compdef '_files -g "*.txt"' pip-sync
 
 compdef '_hosts' ansible
 compdef '_hosts' dig
