@@ -18,7 +18,7 @@ export LANG=en_US.UTF-8
 
 export GPG_TTY=$(tty)
 
-[[ -x $(command -v vimpager) ]] &&  export PAGER=vimpager
+[[ -x $(command -v vimpager) ]] && export PAGER=vimpager
 export LESS=-R
 export WORDCHARS=${WORDCHARS//[&.;\/]}
 
@@ -26,15 +26,12 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zhistory
 
-PROMPT='%F{3}%m%f:%F{2}%1~%f${vcs_info_msg_0_} %# '
+PROMPT='%F{5}%m%f:%F{4}%1~%f${vcs_info_msg_0_} %# '
 
 fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
 
 path=(
     ~/bin
-    ~/.local/bin
-    ~/.rbenv/bin
-    ~/.pyenv/bin
     /usr/local/bin
     /usr/local/sbin
     /bin
@@ -55,6 +52,9 @@ else
     export EDITOR=vi
 fi
 export VISUAL=$EDITOR
+
+[[ -x $(command -v rbenv) ]] && eval "$(rbenv init -)"
+[[ -x $(command -v pyenv) ]] && eval "$(pyenv init -)"
 
 watch=(notme)
 
@@ -122,10 +122,6 @@ if [[ $OSTYPE =~ linux ]]; then
 
     [[ -x $(command -v lesspipe) ]] && eval $(lesspipe)
 fi
-
-[[ -x $(command -v rbenv) ]] && eval "$(rbenv init -)"
-[[ -x $(command -v pyenv) ]] && eval "$(pyenv init -)"
-
 
 alias cp='cp -i'
 alias enc='openssl aes-256-cbc -salt'
