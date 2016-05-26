@@ -1,4 +1,4 @@
-# vim: et sts=4 sw=4
+# vim: sts=4 sw=4
 
 setopt no_global_rcs
 setopt auto_cd
@@ -15,9 +15,7 @@ setopt no_beep
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
 export GPG_TTY=$(tty)
-
 export LESS=-R
 export WORDCHARS=${WORDCHARS//[&.;\/]}
 
@@ -25,25 +23,20 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zhistory
 
-PROMPT='%F{5}%m%f:%F{4}%1~%f${vcs_info_msg_0_} %# '
+PROMPT='%F{2}%n@%m%f %F{4}%3~%f${vcs_info_msg_0_} %# '
 
 fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
+fpath=(${(u)^fpath:A}(N-/))
 
-path=(
-    ~/bin
-    /usr/local/bin
-    /usr/local/sbin
-    /bin
-    /usr/bin
-    /sbin
-    /usr/sbin
-    /opt/X11/bin
-    /usr/local/MacGPG2/bin
-)
-
+path=(~/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /opt/X11/bin /usr/local/MacGPG2/bin)
 path=(${(u)^path:A}(N-/))
 
-export EDITOR=vi
+if [[ -x $(command -v vim) ]]; then
+    export EDITOR=vim
+    alias vi=vim
+else
+    export EDITOR=vi
+fi
 export VISUAL=$EDITOR
 
 watch=(notme)
@@ -60,7 +53,6 @@ zstyle ':completion:*:*:kill:*:processes' '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER"
 
 autoload -U compinit
-
 compinit
 
 compdef '_files -g "*.(asciidoc|md|mkd|markdown)"' pandoc
@@ -72,22 +64,17 @@ compdef '_hosts' dig
 compdef gpg2=gpg
 
 
-autoload -U add-zsh-hook
-
-case $TERM in
-    xterm*|rxvt*)
-        add-zsh-hook precmd xterm_title
-        ;;
-esac
-
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' actionformats ' (%b|%a)'
-zstyle ':vcs_info:*' formats ' (%b%c%u)'
+zstyle ':vcs_info:*' actionformats ' %F{1}(%f%b|%a%F{1})%f'
+zstyle ':vcs_info:*' formats ' %F{1}(%f%b%c%u%F{1})%f'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%F{2}+%f'
-zstyle ':vcs_info:*' unstagedstr '%F{1}-%f'
+zstyle ':vcs_info:*' unstagedstr '%F{3}-%f'
+
+autoload -U add-zsh-hook
+[[ $TERM =~ xterm* ]] && add-zsh-hook precmd xterm_title
 
 if [[ $OSTYPE =~ darwin ]]; then
     alias ls='ls -G'
@@ -95,7 +82,7 @@ if [[ $OSTYPE =~ darwin ]]; then
 fi
 
 if [[ $OSTYPE =~ linux ]]; then
-    alias ls='ls -F'
+    alias ls='ls --color=auto'
 
     if [[ -n $DISPLAY ]]; then
         export BROWSER=firefox
@@ -106,7 +93,8 @@ if [[ $OSTYPE =~ linux ]]; then
     else
         export BROWSER=w3m
     fi
-    export VAGRANT_DEFAULT_PROVIDER=libvirt
+
+    [[ -x $(command -v vagrant) ]] && export VAGRANT_DEFAULT_PROVIDER=libvirt
 
     [[ -x $(command -v lesspipe) ]] && eval $(lesspipe)
 fi
@@ -131,7 +119,6 @@ if [[ -x $(command -v vagrant) ]]; then
 fi
 
 precmd() { vcs_info }
-
 
 certfingerprint() {
     openssl s_client -connect "$1" < /dev/null 2>/dev/null \
@@ -165,7 +152,9 @@ prj() {
     fi
 }
 
-xterm_title() { print -Pn "\e]0;%n@%M\a" }
+xterm_title() { print -Pn "\e]0; %n: %~\a" }
+
+tt() { printf '\e]1;%s\a' $1 }
 
 flush_dns_cache() {
     case $OSTYPE in
