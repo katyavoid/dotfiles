@@ -7,12 +7,17 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
+colorscheme wombat256mod
+
 set autoread
 set autowrite
+set background=light
 set backspace=2
+set belloff=all
 set clipboard=unnamed
 set cmdheight=2
 set encoding=utf-8
+set expandtab
 set fileformats=unix,dos
 set history=1000
 set hlsearch
@@ -28,7 +33,7 @@ else
 endif
 
 set modelines=5
-set mouse=
+set mouse=a
 set nowrap
 set pastetoggle=<C-p>
 set report=0
@@ -44,6 +49,7 @@ set smartcase
 set smarttab
 set spellfile=~/.vim/spell/dict.utf-8.add
 set spelllang=en,el
+
 " Fix slow O inserts
 set timeout timeoutlen=1000 ttimeoutlen=100
 set title
@@ -86,21 +92,21 @@ augroup END
 
 augroup ft_prog
   autocmd!
-  autocmd FileType c,cpp,java,javascript,objc,python,ruby,sh,zsh setlocal cc=80
-  autocmd FileType css,html,json,xml,yaml setlocal ai cc=80
+  autocmd FileType python,ruby setlocal cc=80
+  autocmd FileType c,cpp,java,objc,go setlocal cc=120
   autocmd FileType javascript,python,ruby,sh,zsh setlocal ai
   autocmd FileType c,cpp,java,objc setlocal ci
 augroup END
 
 augroup ft_python
   autocmd!
-  autocmd FileType python setlocal et list sts=4 sw=4 ts=4 makeprg=flake8\ %:S
+  autocmd FileType python setlocal list sts=4 sw=4 ts=4 makeprg=flake8\ %:S
 augroup END
 
 augroup ft_ruby
   autocmd!
   autocmd BufNewFile,BufRead Capfile,Rakefile,Vagrantfile setlocal ft=ruby
-  autocmd FileType ruby setlocal et list sts=2 sw=2 ts=2
+  autocmd FileType ruby setlocal list sts=2 sw=2 ts=2
 augroup END
 
 augroup ft_vim
@@ -205,6 +211,9 @@ let g:NERDTreeWinSize=30
 let g:NERDTreeRespectWildIgnore=1
 let g:NERDTreeIgnore=['tmp$[[dir]]', 'log$[[dir]]']
 
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_working_path_mode = ''
+-
 " }}}
 
 " Printing {{{
