@@ -202,7 +202,6 @@ nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 
 " Runtime {{{
 
-let g:sh_noisk=1
 let python_highlight_all=1
 let ruby_space_errors=1
 
