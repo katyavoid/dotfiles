@@ -1,6 +1,6 @@
 #!/bin/sh
 
-readonly archive_url="https://github.com/kpachnis/dotfiles/tarball/master"
+readonly archive_url="https://gitlab.com/konstantinos/dotfiles/repository/archive.tar.gz?ref=master"
 readonly tmp_dir="$(mktemp -d)"
 
 tar_options="--exclude install.sh --exclude .gitignore --strip-components 1"
