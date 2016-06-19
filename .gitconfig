@@ -1,0 +1,11 @@
+[alias]
+    pl = log --oneline --graph --decorate
+
+[color]
+    ui = auto
+
+[push]
+    default = simple
+
+[include]
+    path = .gitconfig.local
