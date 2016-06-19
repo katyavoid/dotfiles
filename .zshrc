@@ -1,5 +1,3 @@
-# vim: sts=4 sw=4
-
 setopt no_global_rcs
 setopt auto_cd
 setopt auto_list
@@ -16,14 +14,14 @@ setopt no_beep
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export GPG_TTY=$(tty)
-export LESS=-R
+export LESS=-RX
 export WORDCHARS=${WORDCHARS//[&.;\/]}
 
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zhistory
 
-PROMPT='%F{2}%n@%m%f %F{4}%3~%f${vcs_info_msg_0_} %# '
+PROMPT='%n@%m:%3~ ${vcs_info_msg_0_}%(!.#.>) '
 
 fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
 fpath=(${(u)^fpath:A}(N-/))
@@ -67,22 +65,20 @@ compdef gpg2=gpg
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' actionformats ' %F{1}(%f%b|%a%F{1})%f'
-zstyle ':vcs_info:*' formats ' %F{1}(%f%b%c%u%F{1})%f'
+zstyle ':vcs_info:*' actionformats '(%b|%a%) '
+zstyle ':vcs_info:*' formats '(%b%c%u) '
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr '%F{2}+%f'
-zstyle ':vcs_info:*' unstagedstr '%F{3}-%f'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:*' unstagedstr '-'
 
 autoload -U add-zsh-hook
 [[ $TERM =~ xterm* ]] && add-zsh-hook precmd xterm_title
 
 if [[ $OSTYPE =~ darwin ]]; then
-    alias ls='ls -G'
     alias ldd='otool -L'
 fi
 
 if [[ $OSTYPE =~ linux ]]; then
-    alias ls='ls --color=auto'
 
     if [[ -n $DISPLAY ]]; then
         export BROWSER=firefox
@@ -99,6 +95,7 @@ if [[ $OSTYPE =~ linux ]]; then
     [[ -x $(command -v lesspipe) ]] && eval $(lesspipe)
 fi
 
+alias ls='ls -aF'
 alias cp='cp -i'
 alias enc='openssl aes-256-cbc -salt'
 alias dec='openssl aes-256-cbc -d'
@@ -117,6 +114,8 @@ if [[ -x $(command -v vagrant) ]]; then
     alias vh='vagrant halt'
     alias vs='vagrant ssh'
 fi
+
+bindkey -e
 
 precmd() { vcs_info }
 
