@@ -26,7 +26,7 @@ PROMPT='%n@%m:%3~ ${vcs_info_msg_0_}%(!.#.>) '
 fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
 fpath=(${(u)^fpath:A}(N-/))
 
-path=(~/bin /usr/local/bin /usr/local/sbin /bin /usr/bin /sbin /usr/sbin /opt/X11/bin /usr/local/MacGPG2/bin)
+path=(~/bin /usr/local/bin /usr/local/sbin /Library/TeX/texbin /bin /usr/bin /sbin /usr/sbin /opt/X11/bin /usr/local/MacGPG2/bin)
 path=(${(u)^path:A}(N-/))
 
 if [[ -x $(command -v vim) ]]; then
