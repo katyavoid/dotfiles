@@ -1,7 +1,5 @@
 # vim: nospell
-https://github.com/hdima/python-syntax.git
 https://github.com/hynek/vim-python-pep8-indent.git
-https://github.com/fatih/vim-go.git
 https://github.com/godlygeek/tabular.git
 https://github.com/terryma/vim-multiple-cursors.git
 https://github.com/chrisbra/vim-zsh.git
@@ -13,3 +11,4 @@ https://github.com/elzr/vim-json.git
 https://github.com/tpope/vim-rails.git
 https://github.com/vim-ruby/vim-ruby.git
 https://github.com/plasticboy/vim-markdown.git
+https://github.com/scrooloose/nerdtree.git
