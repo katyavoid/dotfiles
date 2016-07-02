@@ -26,7 +26,7 @@ PROMPT='%n@%m:%3~ ${vcs_info_msg_0_}%(!.#.>) '
 fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
 fpath=(${(u)^fpath:A}(N-/))
 
-path=(~/bin /usr/local/bin /usr/local/sbin /Library/TeX/texbin /bin /usr/bin /sbin /usr/sbin /opt/X11/bin /usr/local/MacGPG2/bin)
+path=(~/bin /usr/local/bin /usr/local/sbin /usr/local/games /Library/TeX/texbin /bin /usr/bin /sbin /usr/sbin /usr/games /opt/X11/bin /usr/local/MacGPG2/bin)
 path=(${(u)^path:A}(N-/))
 
 if [[ -x $(command -v vim) ]]; then
@@ -62,14 +62,18 @@ compdef '_hosts' dig
 compdef gpg2=gpg
 
 
-autoload -Uz vcs_info
+if [[ -x $(command -v git) ]]; then
+    autoload -Uz vcs_info
 
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' actionformats '(%b|%a%) '
-zstyle ':vcs_info:*' formats '(%b%c%u) '
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:*' unstagedstr '-'
+    zstyle ':vcs_info:*' enable git
+    zstyle ':vcs_info:*' actionformats '(%b|%a%) '
+    zstyle ':vcs_info:*' formats '(%b%c%u) '
+    zstyle ':vcs_info:*' check-for-changes true
+    zstyle ':vcs_info:*' stagedstr '+'
+    zstyle ':vcs_info:*' unstagedstr '-'
+
+    precmd() { vcs_info }
+fi
 
 autoload -U add-zsh-hook
 [[ $TERM =~ xterm* ]] && add-zsh-hook precmd xterm_title
@@ -117,7 +121,6 @@ fi
 
 bindkey -e
 
-precmd() { vcs_info }
 
 certfingerprint() {
     openssl s_client -connect "$1" < /dev/null 2>/dev/null \
