@@ -16,6 +16,7 @@ export LANG=en_US.UTF-8
 export GPG_TTY=$(tty)
 export LESS=-RX
 export WORDCHARS=${WORDCHARS//[&.;\/]}
+export GREP_OPTIONS='--color=auto'
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -58,6 +59,7 @@ compdef '_files -g "*.yml"' ansible-playbook
 
 compdef '_hosts' ansible
 compdef '_hosts' dig
+compdef '_hosts' fping
 
 compdef gpg2=gpg
 
@@ -79,10 +81,12 @@ autoload -U add-zsh-hook
 [[ $TERM =~ xterm* ]] && add-zsh-hook precmd xterm_title
 
 if [[ $OSTYPE =~ darwin ]]; then
+    alias ls='ls -G'
     alias ldd='otool -L'
 fi
 
 if [[ $OSTYPE =~ linux ]]; then
+    alias ls='ls --color=auto'
 
     if [[ -n $DISPLAY ]]; then
         export BROWSER=firefox

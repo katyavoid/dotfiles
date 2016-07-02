@@ -2,7 +2,7 @@
     pl = log --oneline --graph --decorate
 
 [color]
-    ui = never
+    ui = auto
 
 [push]
     default = simple
