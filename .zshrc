@@ -103,7 +103,6 @@ if [[ $OSTYPE =~ linux ]]; then
     [[ -x $(command -v lesspipe) ]] && eval $(lesspipe)
 fi
 
-alias ls='ls -aF'
 alias cp='cp -i'
 alias enc='openssl aes-256-cbc -salt'
 alias dec='openssl aes-256-cbc -d'
