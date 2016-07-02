@@ -11,7 +11,6 @@ filetype plugin indent on
 set autoread
 set autowrite
 set backspace=2
-set belloff=all
 set clipboard=unnamed
 set cmdheight=2
 set encoding=utf-8
