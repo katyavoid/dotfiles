@@ -7,7 +7,6 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
-colorscheme jcs
 
 set autoread
 set autowrite
