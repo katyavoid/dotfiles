@@ -209,6 +209,13 @@ let NERDTreeRespectWildIgnore=1
 
 " }}}
 
+" Colors {{{
+
+set background=dark
+colorscheme solarized
+
+" }}}
+
 " Printing {{{
 
 set printexpr=PrintFile(v:fname_in)
