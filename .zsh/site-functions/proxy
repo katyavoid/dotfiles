@@ -1,0 +1,52 @@
+proxy() {
+    if [[ -f ~/.proxy ]]; then
+        source ~/.proxy
+    else
+        printf "Proxy settings not found\n"
+    fi
+
+    typeset -a proxies
+    proxies=(HTTP_PROXY HTTPS_PROXY FTP_PROXY RSYNC_PROXY http_proxy https_proxy ftp_proxy rsync_proxy)
+
+    while getopts edsh opt; do
+        case $opt in
+            e)
+                for proxy in $proxies; do
+                    export $proxy=$PROXY
+                done
+                export NO_PROXY
+
+                break
+                ;;
+            d)
+                for proxy in $proxies; do
+                    unset $proxy
+                done
+                unset NO_PROXY
+
+                break
+                ;;
+            s)
+                for proxy in $proxies; do
+                    printf "%s \t-> %s\n" $proxy $(printenv $proxy)
+                done
+                printf "%s \t-> %s\n" NO_PROXY $(printenv NO_PROXY)
+
+                break
+                ;;
+            h)
+                printf "Usage: proxy [-e] [-d] [-s]\n"
+
+                break
+                ;;
+        esac
+    done
+
+    shift $(( OPTIND - 1 ))
+
+    [ $# = 0 ] && printf "Usage: proxy [-e] [-d] [-s]\n"
+
+    unset PROXY
+}
+
+proxy "$@"
