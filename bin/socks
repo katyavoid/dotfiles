@@ -1,0 +1,72 @@
+#!/bin/sh
+
+if [ "$SH_DEBUG" ]; then
+    set -e
+    set -x
+fi
+
+PATH="$(getconf PATH)"
+
+SSH_PROFILE="proxy"
+SSH_COMMAND="ssh -fN $SSH_PROFILE -E $HOME/socks.log"
+
+status() {
+    if [ $(pgrep -f "$SSH_COMMAND") ]; then
+        printf "Connection is active\n"
+    else
+        printf "Connection is not active\n"
+    fi
+
+    exit 0
+}
+
+connect() {
+    if [ $(pgrep -f "$SSH_COMMAND") ]; then
+        printf "Connection is active\n"
+    else
+        $SSH_COMMAND
+    fi
+
+    exit 0
+}
+
+disconnect() {
+    if [ $(pgrep -f "$SSH_COMMAND") ]; then
+        pkill -TERM -f "$SSH_COMMAND"
+    else
+        printf "Connection is not active\n"
+    fi
+
+    exit 0
+}
+
+usage() {
+    printf "$(basename $0) [-c] [-d] [-s]\n"
+
+    exit 0
+}
+
+main() {
+    while getopts cdsh opt; do
+        case $opt in
+            d)
+                disconnect
+                ;;
+            u)
+                connect
+                ;;
+            s)
+                status
+                ;;
+            h)
+                usage
+                ;;
+        esac
+    done
+
+    shift $(( OPTIND - 1 ))
+
+    [ $# = 0 ] && usage
+}
+
+main "$@"
