@@ -101,57 +101,5 @@ bindkey -e
 
 [[ -f ~/.vim/bundle/gruvbox/gruvbox_256palette.sh ]] && source ~/.vim/bundle/gruvbox/gruvbox_256palette.sh
 
-certfingerprint() {
-    openssl s_client -connect "$1" < /dev/null 2>/dev/null \
-        | openssl x509 -fingerprint -noout -in /dev/stdin
-}
-
-path() {
-    foreach dir ($path)
-        printf "%s\n" $dir
-    end
-}
-
-prj() {
-    if [[ -z $projects_dirs ]]; then
-        printf "$(tput bold)projects_dirs$(tput sgr0) is not set\n"
-        return  1
-    fi
-
-    if [[ -n "$1"  && "$1" == 'list' ]]; then
-        foreach dir ($projects_dirs)
-            foreach project ($dir/*(D/))
-                [[ -d "$project" ]] && printf "${project##/*/}\n"
-            end
-        end
-    elif [[ -n "$1" ]]; then
-        foreach dir ($projects_dirs)
-            [[ -d "$dir/$1" ]] && cd "$dir/$1"
-        end
-    else
-        printf "Usage: prj list | <project>\n"
-    fi
-}
-
-xterm_title() { print -Pn "\e]0; %n: %~\a" }
-
-tt() { printf '\e]1;%s\a' $1 }
-
-flush_dns_cache() {
-    case $OSTYPE in
-        darwin*)
-            sudo dscacheutil -flushcache
-            sudo killall -HUP mDNSResponder
-            ;;
-        *)
-            printf "Unknown system\n"
-            ;;
-    esac
-}
-
-rfc() {
-    open "https://tools.ietf.org/html/rfc$1"
-}
-
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
