@@ -99,6 +99,7 @@ fi
 
 bindkey -e
 
+[[ -f ~/.vim/bundle/gruvbox/gruvbox_256palette.sh ]] && source ~/.vim/bundle/gruvbox/gruvbox_256palette.sh
 
 certfingerprint() {
     openssl s_client -connect "$1" < /dev/null 2>/dev/null \
