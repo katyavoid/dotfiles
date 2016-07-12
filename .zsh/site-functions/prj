@@ -1,0 +1,22 @@
+prj() {
+    if [[ -z $projects_dirs ]]; then
+        printf "$(tput bold)projects_dirs$(tput sgr0) is not set\n"
+        return  1
+    fi
+
+    if [[ -n "$1"  && "$1" == 'list' ]]; then
+        foreach dir ($projects_dirs)
+            foreach project ($dir/*(D/))
+                [[ -d "$project" ]] && printf "${project##/*/}\n"
+            end
+        end
+    elif [[ -n "$1" ]]; then
+        foreach dir ($projects_dirs)
+            [[ -d "$dir/$1" ]] && cd "$dir/$1"
+        end
+    else
+        printf "Usage: prj list | <project>\n"
+    fi
+}
+
+prj "$@"
