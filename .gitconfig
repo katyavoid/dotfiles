@@ -1,6 +1,6 @@
 [alias]
     pl = log --oneline --graph --decorate
-
+    l = log --stat --graph --decorate --abbrev-commit --date=relative
 [color]
     ui = auto
 
