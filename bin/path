@@ -1,0 +1,6 @@
+#!/bin/sh
+
+IFS=':'
+for dir in $PATH; do
+    printf "%s\n" $dir
+done
