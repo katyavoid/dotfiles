@@ -52,7 +52,7 @@ main() {
             d)
                 disconnect
                 ;;
-            u)
+            c)
                 connect
                 ;;
             s)
