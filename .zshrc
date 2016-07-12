@@ -99,6 +99,8 @@ fi
 
 bindkey -e
 
+xterm_title() { print -Pn "\e]0; %n: %~\a" }
+
 [[ -f ~/.vim/bundle/gruvbox/gruvbox_256palette.sh ]] && source ~/.vim/bundle/gruvbox/gruvbox_256palette.sh
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
