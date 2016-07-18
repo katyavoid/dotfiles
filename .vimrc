@@ -14,13 +14,7 @@ set backspace=2
 set clipboard=unnamed
 set cmdheight=2
 set encoding=utf-8
-set expandtab
 set fileformats=unix,dos
-
-if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
 
 set history=1000
 set hlsearch
@@ -43,17 +37,14 @@ set ruler
 set scrolloff=1
 set smarttab
 set shiftround
-set shiftwidth=4
 set shortmess+=I
 set showcmd
 set showmode
 set showmatch
 set smartcase
 set smarttab
-set softtabstop=4
 set spellfile=~/.vim/spell/dict.utf-8.add
 set spelllang=en,el
-set tabstop=4
 set t_ti= t_te= " Don't use alternate screen
 set timeout timeoutlen=1000 ttimeoutlen=100 " Fix slow O inserts
 set title
@@ -104,18 +95,18 @@ augroup END
 
 augroup ft_python
     autocmd!
-    autocmd FileType python setlocal makeprg=flake8\ %:S
+    autocmd FileType python setlocal et sts=4 sw=4 list makeprg=flake8\ %:S
 augroup END
 
 augroup ft_ruby
     autocmd!
     autocmd BufNewFile,BufRead Capfile,Rakefile,Vagrantfile setlocal ft=ruby
-    autocmd FileType ruby setlocal sts=2 sw=2 ts=2
+    autocmd FileType ruby setlocal et sts=2 sw=2 ts=2 list
 augroup END
 
 augroup ft_vim
     autocmd!
-    autocmd FileType vim setlocal fdm=marker
+    autocmd FileType vim setlocal et sts=4 sw=4 list fdm=marker
 augroup END
 
 augroup ft_markdown
@@ -124,9 +115,9 @@ augroup ft_markdown
     autocmd FileType markdown setlocal spell tw=78
 augroup END
 
-augroup ft_make
+augroup ft_szh
     autocmd!
-    autocmd! FileType make setlocal noet ts=8 sw=8
+    autocmd BufNewFile,BufRead .zsh/site-functions/* setlocal ft=zsh
 augroup END
 
 " http://vim.wikia.com/wiki/Encryption#GPG
@@ -206,13 +197,6 @@ let python_highlight_all=1
 let ruby_space_errors=1
 
 let NERDTreeRespectWildIgnore=1
-
-" }}}
-
-" Colors {{{
-
-set background=dark
-colorscheme gruvbox
 
 " }}}
 
