@@ -21,7 +21,6 @@ set hlsearch
 set incsearch
 set laststatus=2
 set lazyredraw
-set list
 if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
     let &listchars = "tab:\u21e5\u00b7,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
     let &fillchars = "vert:\u259a,fold:\u00b7"
