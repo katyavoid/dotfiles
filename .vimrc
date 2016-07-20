@@ -7,6 +7,7 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
+colorscheme Lucius
 
 set autoread
 set autowrite
