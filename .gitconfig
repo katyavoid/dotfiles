@@ -1,11 +1,15 @@
 [alias]
-    pl = log --oneline --graph --decorate
-    l = log --stat --graph --decorate --abbrev-commit --date=relative
+	pl = log --oneline --graph --decorate
+	l = log --stat --graph --decorate --abbrev-commit --date=relative
+
 [color]
-    ui = auto
+	ui = auto
+
+[core]
+	excludefiles = ~/.gitignore_global
 
 [push]
-    default = simple
+	default = simple
 
 [include]
-    path = .gitconfig.local
+	path = .gitconfig.local
