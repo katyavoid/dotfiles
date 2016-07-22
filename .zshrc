@@ -1,3 +1,7 @@
+# vim: ts=4 fdm=marker
+
+# Options {{{
+
 setopt no_global_rcs
 setopt auto_cd
 setopt auto_list
@@ -11,11 +15,9 @@ setopt correct
 setopt prompt_subst
 setopt no_beep
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export GPG_TTY=$(tty)
-export LESS=-RX
-export WORDCHARS=${WORDCHARS//[&.;\/]}
+# }}}
+
+# Environment {{{ 
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -34,9 +36,15 @@ else
 fi
 export VISUAL=$EDITOR
 
+# }}}
+
+# Prompt {{{
+
 PROMPT='%n@%m:%3~ ${vcs_info_msg_0_}%(!.#.>) '
 
-watch=(notme)
+# }}}
+
+# Completion {{{
 
 zstyle ':completion::*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh
@@ -61,6 +69,9 @@ compdef '_hosts' fping
 
 compdef gpg2=gpg
 
+# }}}
+
+# VCS {{{
 
 if [[ -x $(command -v git) ]]; then
     autoload -Uz vcs_info
@@ -75,8 +86,16 @@ if [[ -x $(command -v git) ]]; then
     precmd() { vcs_info }
 fi
 
+# }}}
+
+# Hooks {{{
+
 autoload -U add-zsh-hook
 [[ $TERM =~ xterm* ]] && add-zsh-hook precmd xterm_title
+
+# }}}
+
+# Aliases {{{
 
 if [[ $OSTYPE =~ darwin ]]; then
     alias ls='ls -G'
@@ -87,19 +106,12 @@ if [[ $OSTYPE =~ linux ]]; then
     alias ls='ls --color=auto'
 
     if [[ -n $DISPLAY ]]; then
-        export BROWSER=firefox
-        export NO_AT_BRIDGE=1
-
         alias 2don='xrandr --output DP-1 --auto --right-of LVDS-0'
         alias 2doff='xrandr --output DP-1 --off'
-    else
-        export BROWSER=w3m
     fi
-
-    [[ -x $(command -v vagrant) ]] && export VAGRANT_DEFAULT_PROVIDER=libvirt
-
-    [[ -x $(command -v lesspipe) ]] && eval $(lesspipe)
 fi
+
+[[ $EDITOR == vim ]] && alias vi='vim'
 
 alias cp='cp -i'
 alias enc='openssl aes-256-cbc -salt'
@@ -120,9 +132,20 @@ if [[ -x $(command -v vagrant) ]]; then
     alias vs='vagrant ssh'
 fi
 
-bindkey -e
+# }}}
+
+# Functions {{{
 
 xterm_title() { print -Pn "\e]0; %n: %~\a" }
+
+# }}}
+
+# Misc {{{
+
+watch=(notme)
+bindkey -e
+
+# }}}
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
