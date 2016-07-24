@@ -1,6 +1,6 @@
 #!/bin/sh
 
-readonly tar_cmd=bsdtar || tar
+readonly tar_cmd="$(command -v bsdtar || command -v tar)"
 readonly archive_url="https://github.com/kpachnis/dotfiles/tarball/master"
 readonly tmp_dir="$(mktemp -d)"
 
