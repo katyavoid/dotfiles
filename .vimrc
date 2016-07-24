@@ -1,5 +1,23 @@
-execute pathogen#infect()
-execute pathogen#helptags()
+" Vundle {{{
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'godlygeek/tabular'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'chrisbra/vim-zsh'
+Plugin 'cespare/vim-sbd'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-endwise'
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'scrooloose/nerdtree'
+
+call vundle#end()
+" }}}
 
 " Options {{{
 
@@ -50,7 +68,7 @@ set timeout timeoutlen=1000 ttimeoutlen=100 " Fix slow O inserts
 set title
 set ttyfast
 set viminfo='100,\"1000
-set wildignore+=.git,.hg,.svn
+set wildignore+=,.hg,.svn
 set wildignore+=*.o,*.pyc,*.so
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif
 set wildignore+=.DS_Store
