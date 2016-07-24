@@ -5,7 +5,7 @@ readonly tmp_dir="$(mktemp -d)"
 
 tar_options="--exclude install.sh --exclude .gitignore --strip-components 1"
 
-if [ "$(uname -s)" = "Linux" ]; then
+if [ ! "$(uname -s)" = "Darwin" ]; then
     tar_options="--exclude Library $tar_options"
 fi
 
