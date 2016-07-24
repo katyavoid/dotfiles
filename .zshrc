@@ -18,6 +18,12 @@ setopt no_beep
 # }}}
 
 # Environment {{{ 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export GPG_TTY=$(tty)
+export PAGER=$(command -v vimpager || command -v less)
+export LESS=-RX
+export WORDCHARS=${WORDCHARS//[&.;\/]}
 
 HISTSIZE=10000
 SAVEHIST=10000
