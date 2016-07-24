@@ -21,5 +21,12 @@ $fetch_cmd $archive_url -o $tmp_dir/dotfiles.tar.gz
 
 $tar_cmd -zxf $tmp_dir/dotfiles.tar.gz $tar_options -C $HOME
 
+if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
+	if [ -x $(command -v git) ]; then
+		git clone -q https://github.com/VundleVim/Vundle.vim.git \
+			"$HOME/.vim/bundle/Vundle.vim"
+	fi
+fi
+
 rm -fr $tmp_dir
 
