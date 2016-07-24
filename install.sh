@@ -1,5 +1,6 @@
 #!/bin/sh
 
+readonly tar_cmd=bsdtar || tar
 readonly archive_url="https://github.com/kpachnis/dotfiles/tarball/master"
 readonly tmp_dir="$(mktemp -d)"
 
@@ -18,7 +19,7 @@ fi
 
 $fetch_cmd $archive_url -o $tmp_dir/dotfiles.tar.gz
 
-tar -zxf $tmp_dir/dotfiles.tar.gz $tar_options -C $HOME
+$tar_cmd -zxf $tmp_dir/dotfiles.tar.gz $tar_options -C $HOME
 
 rm -fr $tmp_dir
 
