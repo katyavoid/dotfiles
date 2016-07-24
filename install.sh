@@ -11,7 +11,7 @@ if [ ! "$(uname -s)" = "Darwin" ]; then
 fi
 
 if [ -x "$(command -v curl)" ]; then
-    fetch_cmd="$(command -v curl) -L"
+    fetch_cmd="$(command -v curl) -Ls"
 else
     printf "Can't find curl\n"
     exit 1
