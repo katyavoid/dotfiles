@@ -48,7 +48,7 @@ fi
 export VISUAL=$EDITOR
 
 export GPG_TTY=$(tty)
-export PAGER=$(command -v vimpager || command -v less)
+export PAGER=less
 export LESS=-RX
 
 # }}}
