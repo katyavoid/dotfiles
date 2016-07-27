@@ -14,6 +14,10 @@ setopt clobber
 setopt correct
 setopt prompt_subst
 setopt no_beep
+setopt auto_pushd
+setopt pushd_minus
+setopt pushd_silent
+setopt pushd_to_home
 
 # }}}
 
@@ -28,6 +32,8 @@ export WORDCHARS=${WORDCHARS//[&.;\/]}
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zhistory
+
+DIRSTACKSIZE=10
 
 fpath+=(~/.zsh/site-functions /usr/local/share/zsh/site-functions)
 fpath=(${(u)^fpath:A}(N-/))
@@ -46,7 +52,7 @@ export VISUAL=$EDITOR
 
 # Prompt {{{
 
-PROMPT='%n@%m:%3~ ${vcs_info_msg_0_}%(!.#.>) '
+PROMPT='%~${vcs_info_msg_0_}%(!.#.>) '
 
 # }}}
 
@@ -83,8 +89,8 @@ if [[ -x $(command -v git) ]]; then
 	autoload -Uz vcs_info
 
 	zstyle ':vcs_info:*' enable git
-	zstyle ':vcs_info:*' actionformats '(%b|%a%) '
-	zstyle ':vcs_info:*' formats '(%b%c%u) '
+	zstyle ':vcs_info:*' actionformats ' (%b|%a%) '
+	zstyle ':vcs_info:*' formats ' (%b%c%u) '
 	zstyle ':vcs_info:*' check-for-changes true
 	zstyle ':vcs_info:*' stagedstr '+'
 	zstyle ':vcs_info:*' unstagedstr '-'
@@ -128,9 +134,10 @@ alias enc='openssl aes-256-cbc -salt'
 alias dec='openssl aes-256-cbc -d'
 alias ctmp='find $TMP -ctime +10 -delete'
 alias l='ls -chlt'
-alias dot='ls -d .*[[:alnum:]]'
+alias dot='ls -d .*(/,.)'
 alias du1='du -h -d 1'
 alias mv='mv -i'
+alias reload='source ~/.zshrc'
 alias rm='rm -i'
 alias timestamp='date +%Y%m%d_%H%M%S'
 alias today='date +%Y%m%d'
@@ -146,7 +153,7 @@ fi
 
 # Functions {{{
 
-xterm_title() { print -Pn "\e]0; %n: %~\a" }
+xterm_title() { print -Pn "\e]0; %M\a" }
 
 # }}}
 
