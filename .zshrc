@@ -112,6 +112,7 @@ autoload -U add-zsh-hook
 if [[ $OSTYPE =~ darwin ]]; then
 	alias ls='ls -G'
 	alias ldd='otool -L'
+	alias ss='open /System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app'
 fi
 
 if [[ $OSTYPE =~ linux ]]; then
