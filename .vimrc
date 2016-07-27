@@ -1,4 +1,5 @@
 " Vundle {{{
+
 set nocompatible
 filetype off
 
@@ -17,6 +18,7 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
+
 " }}}
 
 " Options {{{
@@ -26,6 +28,7 @@ syntax on
 filetype plugin indent on
 
 colorscheme lucius
+LuciusLight
 
 set autoread
 set autowrite
