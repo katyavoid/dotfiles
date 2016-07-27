@@ -22,11 +22,10 @@ setopt pushd_to_home
 # }}}
 
 # Environment {{{ 
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export GPG_TTY=$(tty)
-export PAGER=$(command -v vimpager || command -v less)
-export LESS=-RX
+
 export WORDCHARS=${WORDCHARS//[&.;\/]}
 
 HISTSIZE=10000
@@ -42,11 +41,15 @@ path=(~/bin ~/.local/bin /usr/local/bin /usr/local/sbin /usr/local/games /Librar
 path=(${(u)^path:A}(N-/))
 
 if [[ -x $(command -v vim) ]]; then
-	export EDITOR=vim
+    export EDITOR=vim
 else
-	export EDITOR=vi
+    export EDITOR=vi
 fi
 export VISUAL=$EDITOR
+
+export GPG_TTY=$(tty)
+export PAGER=$(command -v vimpager || command -v less)
+export LESS=-RX
 
 # }}}
 
@@ -86,16 +89,16 @@ compdef gpg2=gpg
 # VCS {{{
 
 if [[ -x $(command -v git) ]]; then
-	autoload -Uz vcs_info
+    autoload -Uz vcs_info
 
-	zstyle ':vcs_info:*' enable git
-	zstyle ':vcs_info:*' actionformats ' (%b|%a%) '
-	zstyle ':vcs_info:*' formats ' (%b%c%u) '
-	zstyle ':vcs_info:*' check-for-changes true
-	zstyle ':vcs_info:*' stagedstr '+'
-	zstyle ':vcs_info:*' unstagedstr '-'
+    zstyle ':vcs_info:*' enable git
+    zstyle ':vcs_info:*' actionformats ' (%b|%a%) '
+    zstyle ':vcs_info:*' formats ' (%b%c%u) '
+    zstyle ':vcs_info:*' check-for-changes true
+    zstyle ':vcs_info:*' stagedstr '+'
+    zstyle ':vcs_info:*' unstagedstr '-'
 
-	precmd() { vcs_info }
+    precmd() { vcs_info }
 fi
 
 # }}}
@@ -110,22 +113,22 @@ autoload -U add-zsh-hook
 # Aliases {{{
 
 if [[ $OSTYPE =~ darwin ]]; then
-	alias ls='ls -G'
-	alias ldd='otool -L'
-	alias ss='open /System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app'
+    alias ls='ls -G'
+    alias ldd='otool -L'
+    alias ss='open /System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app'
 fi
 
 if [[ $OSTYPE =~ linux ]]; then
-	alias ls='ls --color=auto'
+    alias ls='ls --color=auto'
 
-	if [[ -n $DISPLAY ]]; then
-		alias 2don='xrandr --output DP-1 --auto --right-of LVDS-0'
-		alias 2doff='xrandr --output DP-1 --off'
-	fi
+    if [[ -n $DISPLAY ]]; then
+        alias 2don='xrandr --output DP-1 --auto --right-of LVDS-0'
+        alias 2doff='xrandr --output DP-1 --off'
+    fi
 fi
 
 if [[ $OSTYPE =~ bsd ]]; then
-	alias ls='ls -F'
+    alias ls='ls -F'
 fi
 
 [[ $EDITOR == vim ]] && alias vi='vim'
@@ -144,10 +147,10 @@ alias timestamp='date +%Y%m%d_%H%M%S'
 alias today='date +%Y%m%d'
 
 if [[ -x $(command -v vagrant) ]]; then
-	alias vu='vagrant up --provision'
-	alias vp='vagrant provision'
-	alias vh='vagrant halt'
-	alias vs='vagrant ssh'
+    alias vu='vagrant up --provision'
+    alias vp='vagrant provision'
+    alias vh='vagrant halt'
+    alias vs='vagrant ssh'
 fi
 
 # }}}
