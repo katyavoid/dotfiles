@@ -68,7 +68,7 @@ set timeout timeoutlen=1000 ttimeoutlen=100 " Fix slow O inserts
 set title
 set ttyfast
 set viminfo='100,\"1000
-set wildignore+=,.hg,.svn
+set wildignore+=.git,.hg,.svn
 set wildignore+=*.o,*.pyc,*.so
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif
 set wildignore+=.DS_Store
@@ -135,7 +135,7 @@ augroup END
 
 augroup ft_szh
     autocmd!
-    autocmd BufNewFile,BufRead .zsh/site-functions/* setlocal ft=zsh
+    autocmd BufNewFile,BufRead .zsh/**/* setlocal ft=zsh
 augroup END
 
 " http://vim.wikia.com/wiki/Encryption#GPG
