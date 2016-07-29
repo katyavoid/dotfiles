@@ -21,7 +21,7 @@ setopt pushd_to_home
 
 # }}}
 
-# Environment {{{ 
+# Environment {{{
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
