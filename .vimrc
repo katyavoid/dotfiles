@@ -36,6 +36,7 @@ set backspace=2
 set clipboard=unnamed
 set cmdheight=2
 set encoding=utf-8
+set expandtab
 set fileformats=unix,dos
 
 set history=1000
@@ -43,6 +44,7 @@ set hlsearch
 set incsearch
 set laststatus=2
 set lazyredraw
+set list
 if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
     let &listchars = "space:\u00b7,tab:\u21e5\u00b7,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
     let &fillchars = "vert:\u259a,fold:\u00b7"
@@ -58,14 +60,17 @@ set ruler
 set scrolloff=1
 set smarttab
 set shiftround
+set shiftwidth=4
 set shortmess+=I
 set showcmd
 set showmode
 set showmatch
 set smartcase
 set smarttab
+set softtabstop=4
 set spellfile=~/.vim/spell/dict.utf-8.add
 set spelllang=en,el
+set tabstop=4
 set t_ti= t_te= " Don't use alternate screen
 set timeout timeoutlen=1000 ttimeoutlen=100 " Fix slow O inserts
 set title
@@ -116,18 +121,18 @@ augroup END
 
 augroup ft_python
     autocmd!
-    autocmd FileType python setlocal et sts=4 sw=4 list makeprg=flake8\ %:S
+    autocmd FileType python setlocal makeprg=flake8\ %:S
 augroup END
 
 augroup ft_ruby
     autocmd!
     autocmd BufNewFile,BufRead Capfile,Rakefile,Vagrantfile setlocal ft=ruby
-    autocmd FileType ruby setlocal et sts=2 sw=2 ts=2 list
+    autocmd FileType ruby setlocal et sts=2 sw=2 ts=2
 augroup END
 
 augroup ft_vim
     autocmd!
-    autocmd FileType vim setlocal et sts=4 sw=4 list fdm=marker
+    autocmd FileType vim setlocal fdm=marker
 augroup END
 
 augroup ft_markdown
@@ -139,6 +144,11 @@ augroup END
 augroup ft_szh
     autocmd!
     autocmd BufNewFile,BufRead .zsh/**/* setlocal ft=zsh
+augroup END
+
+augroup ft_make
+    autocmd!
+    autocmd FileType make setlocal noet nolist sw=8 ts=8
 augroup END
 
 " http://vim.wikia.com/wiki/Encryption#GPG
